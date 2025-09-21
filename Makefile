@@ -3,8 +3,7 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = swap.c push.c main.c\
-	  rotate.c reverse_rotate.c \ 
+SRC = libft_split.c libft_utils.c main.c struct.c\
 
 OBJ = $(SRC:.c=.o)
 

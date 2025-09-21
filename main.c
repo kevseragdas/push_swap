@@ -2,39 +2,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_stack(t_stack *stack, char name)
+int main(int ac, char **arg)
 {
-    printf("Stack %c: ", name);
-    while (stack)
+    if(ac <= 2)
+        return (0);
+    
+   
+    
+}
+t_node *new_node(int value)
     {
-        printf("%d ", stack->value);
-        stack = stack->next;
+        t_node *node = malloc(sizeof(t_node));
+        if(!node)
+            return(NULL);
+        node->value = value;
+        node->next = NULL;
+        return(node);
     }
-    printf("\n");
-}
 
-// Basit node oluşturma
-t_stack *stack_new(int value)
+void *add_front(t_list *stack, t_node *node)
 {
-    t_stack *node = malloc(sizeof(t_stack));
-    node->value = value;
-    node->next = NULL;
-    return node;
-}
-
-int main(void)
-{
-    t_stack *a = stack_new(1);
-    a->next = stack_new(2);
-    a->next->next = stack_new(3);
-    t_stack *b = NULL;
-
-    print_stack(a, 'A');
-    pb(&a, &b);
-    print_stack(a, 'A');
-    print_stack(b, 'B');
-    ra(&a);
-    print_stack(a, 'A');
-    rra(&a);
-    print_stack(a, 'A');
+    if(!stack || !node)
+        return;
+    node->next = stack->head;
+    stack->head = node;
+    stack->size++;
 }

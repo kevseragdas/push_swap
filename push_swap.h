@@ -1,22 +1,22 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct s_stack
-{
-    int             value;
-    struct s_stack *next;
-}   t_stack;
+typedef struct s_node
+    {
+        int value;
+        struct s_node *next;
+    } t_node;
 
-void sa(t_stack **a);
-void sb(t_stack **b);
-void ss(t_stack **a, t_stack **b);
-void pa(t_stack **a, t_stack **b);
-void pb(t_stack **a, t_stack **b);
-void ra(t_stack **a);
-void rb(t_stack **b);
-void rr(t_stack **a, t_stack **b);
-void rra(t_stack **a);
-void rrb(t_stack **b);
-void rrr(t_stack **a, t_stack **b);
+typedef struct s_list
+    {
+        int size;
+        struct s_list *head;
+    } t_list;
+
+t_node *new_node(int value);
+int main(int ac, char **arg);
+int	ft_atoi(const char *nptr);
+char	**ft_split(char const *s, char c);
+void *add_front(t_list *stack, t_node *node);
 
 #endif
