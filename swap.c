@@ -9,5 +9,10 @@ void sa(t_list *a)
         return;
     
         first = a->head;
+        second = first->next;
+        
+        first->next = second->next;
+        second->next = first;
+        a->head = second;
         
 }
