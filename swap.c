@@ -3,34 +3,30 @@
 
 t_list *sa(t_list * stack_a)
 {
-    t_list * first_a;
-    t_list * second_a;
+    t_list *first_a;
 
-    if(!stack_a || stack_a->next == NULL)
+     if (!stack_a || !stack_a->next)
         return stack_a;
 
     first_a = stack_a;
-    second_a = first_a->next;
-
-    first_a->next = second_a->next;
-    first_a = second_a->next;
-
-    return second_a;
+    stack_a = stack_a->next;
+    first_a->next = stack_a->next;
+    stack_a->next = first_a;
+    
+    return stack_a;
 }
 
 t_list *sb(t_list * stack_b)
 {
-    t_list * first_b;
-    t_list * second_b;
+    t_list *first_b;
 
-    if(!stack_b || stack_b->next == NULL)
+     if (!stack_b || !stack_b->next)
         return stack_b;
 
     first_b = stack_b;
-    second_b = first_b->next;
+    stack_b = stack_b->next;
+    first_b->next = stack_b->next;
+    stack_b->next = first_b;
 
-    first_b->next = second_b->next;
-    first_b = second_b->next;
-
-    return second_b;
+    return stack_b;
 }

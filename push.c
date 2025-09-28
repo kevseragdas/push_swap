@@ -3,35 +3,31 @@
 
 t_list *pa(t_list *stack_a, t_list *stack_b)
 {
-   t_list *first_a;
    t_list *first_b;
-   t_list *temp;
    
-   first_a = stack_a;
+   if(!stack_b)
+      return stack_a;
+  
    first_b = stack_b;
-
    stack_b = stack_b->next;
-   temp = first_a;
 
-   first_b->next = temp;
+   first_b->next = stack_a;
    stack_a = first_b;
 
    return stack_a;
 }
 
-t_list *pa(t_list *stack_a, t_list *stack_b)
+t_list *pb(t_list *stack_a, t_list *stack_b)
 {
    t_list *first_a;
-   t_list *first_b;
-   t_list *temp;
    
+   if(!stack_a)
+      return stack_b;
+  
    first_a = stack_a;
-   first_b = stack_b;
-
    stack_a = stack_a->next;
-   temp = first_b;
 
-   first_a->next = temp;
+   first_a->next = stack_b;
    stack_b = first_a;
 
    return stack_b;
