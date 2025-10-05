@@ -2,35 +2,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-t_list *new_node(int value)
-{
-   t_list * node = malloc(sizeof(t_list));
-   if(!node)
-        return(NULL);
-    node->value = value;
-    node->next = NULL;
-    return(node);
-}
-void add_back(t_list * stack_a, t_list * node)
-{   
-    
-}
-t_list  *stack_end(t_list * stack_a)
-{
-    while(stack_a->next != NULL)
-        stack_a = stack_a->next;
-    return(stack_a);
-}
 int main(int ac, char **arg)
 {
+    int chunk = 0;
+    int group = 0;
     int i = 0;
+    char **new;
+    int *integer;
     t_list * node;
     t_list * stack_a = malloc(sizeof(t_list));
-    while(arg[1][i])
+
+    while(arg[i++])
+        new = ft_split(arg[i], ' ');
+    i = 0;
+    while (new[i])
+    {}
+
+
+    // if(ac < 5)
+    //     chunk = 0;
+    // else if (ac < 100)
+    //     chunk = 5;
+    // else if (ac < 250)
+    //     chunk = 10;
+    // else if (ac < 500)
+    //     chunk = 25;
+
+    // group = ac / chunk;
+    
+    // controller(ac, arg, stack_a, group);
+
+
+}
+
+char controller (int ac, char **arg, t_list * stack_a, int group)
+{
+    int i = 0;
+    int j = 0;
+    char     max;
+
+    int len = ft_strlen(arg[1]);
+    while (len - i < len)
     {
-       int c = ft_atoi(arg[1][i]);
-       node = new_node(c);
-       add_back(&stack_a,node);
+        i = 0;
+        max = arg[1][j + 1];
+        while(i < len)
+        {
+            if(arg[1][j] < arg[1][j + 1])
+                max = arg[1][j + 1];
+            i++;
+            j++;
+        }
+        return (max);
     }
 
 

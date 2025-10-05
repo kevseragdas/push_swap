@@ -26,3 +26,12 @@ int	ft_atoi(const char *nptr)
 	}
 	return (opt * num);
 }
+
+int ft_strlen(char *a)
+{
+	int i = 0;
+
+	while(a[i])
+		i++;
+	return (i);
+}

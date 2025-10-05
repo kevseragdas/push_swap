@@ -21,5 +21,6 @@ int main(int ac, char **arg);
 t_list  *stack_end(t_list * stack_a);
 void add_back(t_list * stack_a, t_list * node);
 t_list *new_node(int value);
+char	**ft_split(char const *s, char c);
 
 #endif
