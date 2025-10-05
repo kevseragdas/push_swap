@@ -1,6 +1,8 @@
 #include "push_swap.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_atoi(const char *nptr)
+size_t	ft_atoi(const char *nptr)
 {
 	int	i;
 	int	num;
@@ -25,13 +27,4 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (opt * num);
-}
-
-int ft_strlen(char *a)
-{
-	int i = 0;
-
-	while(a[i])
-		i++;
-	return (i);
 }

@@ -2,59 +2,109 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int ac, char **arg)
+void print_stack(t_list *stack)
 {
-    int chunk = 0;
-    int group = 0;
-    int i = 0;
-    char **new;
-    int *integer;
-    t_list * node;
-    t_list * stack_a = malloc(sizeof(t_list));
+    while (stack != NULL)
+    {
+        printf("%d", stack->value);
+        stack = stack->next;
+    }
+}
+void add_back(t_list *node, t_list **stack_a)
+{ 
+    t_list *temp;
 
-    while(arg[i++])
-        new = ft_split(arg[i], ' ');
-    i = 0;
-    while (new[i])
-    {}
-
-
-    // if(ac < 5)
-    //     chunk = 0;
-    // else if (ac < 100)
-    //     chunk = 5;
-    // else if (ac < 250)
-    //     chunk = 10;
-    // else if (ac < 500)
-    //     chunk = 25;
-
-    // group = ac / chunk;
-    
-    // controller(ac, arg, stack_a, group);
-
+    temp = *stack_a;
+    if(*stack_a == NULL)
+    {
+        (*stack_a) = node;
+        node->next = NULL;
+        return;
+    }
+    while(temp->next != NULL)
+        temp = temp->next;
+    temp->next = node;
+    node->next = NULL;
 
 }
-
-char controller (int ac, char **arg, t_list * stack_a, int group)
+int is_digit(char **s)
 {
-    int i = 0;
-    int j = 0;
-    char     max;
+    int j;
+    int i;
 
-    int len = ft_strlen(arg[1]);
-    while (len - i < len)
-    {
-        i = 0;
-        max = arg[1][j + 1];
-        while(i < len)
+    i = -1;
+    while(s[++i])
+	{
+        j = -1;
+        while(s[i][++j])
         {
-            if(arg[1][j] < arg[1][j + 1])
-                max = arg[1][j + 1];
-            i++;
-            j++;
+            if(s[i][j] <= '9' && s[i][j] >= '0')
+                continue;
+            else
+                return(0);
         }
-        return (max);
+	}
+    return(1);
+}
+void free_stack(t_list **stack)
+{
+    t_list *tmp;
+
+    while (*stack)
+    {
+        tmp = (*stack)->next;
+        free(*stack);
+        *stack = tmp;
     }
+}
+int is_repeat(char **s)
+{
+    int j;
+    int i;
+    char *a;
+    i = -1;
+    while(s[++i])
+    {
+        j = -1;
+        while(s[i][++j])
+            a[j] = s[i][j];
+    }
+    while(s[++i])
+	{
+        j = -1;
+        while(s[i][++j])
+        {
+            
+        }
+	}
+    return(1);
+}
 
+int main(int ac, char **arg)
+{
+    t_list * stack_a = NULL;
+    t_list *node;
+    int i = 0;
+    int j;
+    char **new;
 
+    if(ac == 1)
+        exit(1);
+    while(arg[++i])
+    {
+        new = ft_split(arg[i], ' ');
+        if(!is_digit(new))
+        {
+            free_stack(&stack_a); 
+            exit(1);
+        }
+        j = -1;
+        while(new[++j])
+        {
+            node = malloc(sizeof(t_list));
+            node->value = ft_atoi(new[j]);
+            add_back(node, &stack_a);
+        }
+    }
+    print_stack(stack_a);
 }
