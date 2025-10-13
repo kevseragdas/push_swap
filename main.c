@@ -6,7 +6,7 @@ void print_stack(t_list *stack)
 {
     while (stack != NULL)
     {
-        printf("%d", stack->value);
+        printf("%d\n", stack->value);
         stack = stack->next;
     }
 }
@@ -38,6 +38,14 @@ int is_digit(char **s)
         j = -1;
         while(s[i][++j])
         {
+            if(s[i][j] == '-')
+            {
+                j++;
+                if(s[i][j] <= '9' && s[i][j] >= '0')
+                    continue;
+                else
+                    return(0);
+            }
             if(s[i][j] <= '9' && s[i][j] >= '0')
                 continue;
             else
@@ -57,32 +65,33 @@ void free_stack(t_list **stack)
         *stack = tmp;
     }
 }
-int is_repeat(char **s)
-{
-    int j;
-    int i;
-    char *a;
-    i = -1;
-    while(s[++i])
-    {
-        j = -1;
-        while(s[i][++j])
-            a[j] = s[i][j];
-    }
-    while(s[++i])
-	{
-        j = -1;
-        while(s[i][++j])
-        {
+// int is_repeat(char **s)
+// {
+//     int j;
+//     int i;
+//     char *a;
+//     i = -1;
+//     while(s[++i])
+//     {
+//         j = -1;
+//         while(s[i][++j])
+//             a[j] = s[i][j];
+//     }
+//     while(s[++i])
+// 	{
+//         j = -1;
+//         while(s[i][++j])
+//         {
             
-        }
-	}
-    return(1);
-}
+//         }
+// 	}
+//     return(1);
+// }
 
 int main(int ac, char **arg)
 {
     t_list * stack_a = NULL;
+    t_list * stack_b = NULL;
     t_list *node;
     int i = 0;
     int j;
@@ -106,5 +115,10 @@ int main(int ac, char **arg)
             add_back(node, &stack_a);
         }
     }
+    radix_sort(&stack_a, &stack_b);
+    printf("stack_b :\n");
+    print_stack(stack_b);
+    printf("stack_a :\n");
     print_stack(stack_a);
+
 }

@@ -5,6 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC = libft_split.c libft_utils.c main.c \
 	  reverse.c push.c rotate.c swap.c \
+	  radix.c \
 
 OBJ = $(SRC:.c=.o)
 
