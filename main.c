@@ -29,31 +29,26 @@ void add_back(t_list *node, t_list **stack_a)
 }
 int is_digit(char **s)
 {
-    int j;
-    int i;
+    int i = 0;
 
-    i = -1;
-    while(s[++i])
-	{
-        j = -1;
-        while(s[i][++j])
+    while (s[i])
+    {
+        int j = 0;
+        if (s[i][j] == '-')
+            j++;
+        if (s[i][j] == '\0')
+            return 0;
+        while (s[i][j])
         {
-            if(s[i][j] == '-')
-            {
-                j++;
-                if(s[i][j] <= '9' && s[i][j] >= '0')
-                    continue;
-                else
-                    return(0);
-            }
-            if(s[i][j] <= '9' && s[i][j] >= '0')
-                continue;
-            else
-                return(0);
+            if (s[i][j] < '0' || s[i][j] > '9')
+                return 0;
+            j++;
         }
-	}
-    return(1);
+        i++;
+    }
+    return 1;
 }
+
 void free_stack(t_list **stack)
 {
     t_list *tmp;
@@ -65,46 +60,40 @@ void free_stack(t_list **stack)
         *stack = tmp;
     }
 }
-// int is_repeat(char **s)
-// {
-//     int j;
-//     int i;
-//     char *a;
-//     i = -1;
-//     while(s[++i])
-//     {
-//         j = -1;
-//         while(s[i][++j])
-//             a[j] = s[i][j];
-//     }
-//     while(s[++i])
-// 	{
-//         j = -1;
-//         while(s[i][++j])
-//         {
-            
-//         }
-// 	}
-//     return(1);
-// }
-
-int main(int ac, char **arg)
+int is_repeat(t_list *stack)
 {
-    t_list * stack_a = NULL;
-    t_list * stack_b = NULL;
-    t_list *node;
-    int i = 0;
+    t_list *second;
+    
+    second = stack->next;
+
+    while(stack)
+    {
+        second = stack->next;
+        while(second)
+        {
+            if(second->value == stack->value)
+                return (0);
+            else
+                second = second->next;
+        }
+        stack = stack->next;
+    }
+    return (1);
+}
+void    make_number(char **arg, t_list **stack)
+{
+    int i;
     int j;
     char **new;
+    t_list *node;
 
-    if(ac == 1)
-        exit(1);
+    i = 0;
     while(arg[++i])
     {
         new = ft_split(arg[i], ' ');
         if(!is_digit(new))
         {
-            free_stack(&stack_a); 
+            free_stack(stack); 
             exit(1);
         }
         j = -1;
@@ -112,13 +101,26 @@ int main(int ac, char **arg)
         {
             node = malloc(sizeof(t_list));
             node->value = ft_atoi(new[j]);
-            add_back(node, &stack_a);
+            add_back(node, stack);
         }
+    }
+}
+
+int main(int ac, char **arg)
+{
+    t_list * stack_a = NULL;
+    t_list * stack_b = NULL;
+
+    if(ac == 1)     exit(1);
+    make_number(arg, &stack_a);
+    if(!is_repeat(stack_a))
+    {
+        free_stack(&stack_a); 
+        exit(1);
     }
     radix_sort(&stack_a, &stack_b);
     printf("stack_b :\n");
     print_stack(stack_b);
     printf("stack_a :\n");
     print_stack(stack_a);
-
 }

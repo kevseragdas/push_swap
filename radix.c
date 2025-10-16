@@ -32,6 +32,17 @@ int stack_size(t_list *stack)
     }
     return(size);
 }
+
+int is_negative(t_list *stack)
+{
+    int num;
+
+    num = stack->value;
+    if(num >= 0)
+        return (1);
+    else
+        return (0);
+}
 void    radix_sort(t_list **stack_a, t_list **stack_b)
 {
     int max_bit;
@@ -58,6 +69,5 @@ void    radix_sort(t_list **stack_a, t_list **stack_b)
         while(*stack_b)
             pa(stack_a, stack_b);
         i++;
-    }
-   
+    }   
 }
