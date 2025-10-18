@@ -119,8 +119,5 @@ int main(int ac, char **arg)
         exit(1);
     }
     radix_sort(&stack_a, &stack_b);
-    printf("stack_b :\n");
-    print_stack(stack_b);
-    printf("stack_a :\n");
     print_stack(stack_a);
 }

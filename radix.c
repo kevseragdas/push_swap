@@ -51,23 +51,43 @@ void    radix_sort(t_list **stack_a, t_list **stack_b)
     int i;
     int j;
 
+    find_index(stack_a);
     max_bit = max_bitn(*stack_a);
     size = stack_size(*stack_a);
-    i = 0;
-    while(i < max_bit)
+    i = -1;
+    while(++i < max_bit)
     {
-        j = 0;
-        while(j < size)
+        j = -1;
+        while(++j < size)
         {
-            temp = (*stack_a)->value;
+            temp = (*stack_a)->index;
             if((temp >> i & 1) == 0)
                 pb(stack_a, stack_b);
             else
                 ra(stack_a);
-            j++;
         }
         while(*stack_b)
             pa(stack_a, stack_b);
-        i++;
     }   
+}
+void find_index(t_list **stack)
+{
+    t_list *tmp1;
+    t_list *tmp2;
+    int rank;
+
+    tmp1 = *stack;
+    while (tmp1)
+    {
+        rank = 0;
+        tmp2 = *stack;
+        while (tmp2)
+        {
+            if (tmp2->value < tmp1->value)
+                rank++;
+            tmp2 = tmp2->next;
+        }
+        tmp1->index = rank;
+        tmp1 = tmp1->next;
+    }
 }

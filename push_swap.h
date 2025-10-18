@@ -41,4 +41,6 @@ int     max_bitn(t_list *stack_a);
 void    radix_sort(t_list **stack_a, t_list **stack_b);
 int     stack_size(t_list *stack);
 int     is_repeat(t_list *stack);
+void find_index(t_list **stack);
+
 #endif
