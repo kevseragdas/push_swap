@@ -15,6 +15,7 @@ void    rra(t_list **stack_a)
     last->next = *stack_a;
     temp->next = NULL;
     *stack_a = last;
+    ft_printf("rra\n");
 }
 
 void    rrb(t_list **stack_b)
@@ -30,4 +31,32 @@ void    rrb(t_list **stack_b)
     last->next = *stack_b;
     temp->next = NULL;
     *stack_b = last;
+    ft_printf("rrb\n");
+}
+void rrr(t_list **stack_a, t_list **stack_b)
+{
+    t_list *last;
+    t_list *second_last;
+    
+    if (*stack_a && (*stack_a)->next)
+    {
+        second_last = *stack_a;
+        while (second_last->next->next)
+            second_last = second_last->next;
+        last = second_last->next;
+        second_last->next = NULL;
+        last->next = *stack_a;
+        *stack_a = last;
+    }
+    if (*stack_b && (*stack_b)->next)
+    {
+        second_last = *stack_b;
+        while (second_last->next->next)
+            second_last = second_last->next;
+        last = second_last->next;
+        second_last->next = NULL;
+        last->next = *stack_b;
+        *stack_b = last;
+    }
+    ft_printf("rrr\n");
 }

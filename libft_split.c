@@ -69,15 +69,15 @@ static int	ft_word_count(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_free(char **new, int j)
+char **ft_free(char **new, int j)
 {
-	while (new[j])
-	{
-		free(new[j]);
-		j--;
-	}
-	free(new);
-	return (NULL);
+    while (j >= 0)
+    {
+        free(new[j]);
+        j--;
+    }
+    free(new);
+    return NULL;
 }
 
 char	**ft_split(char const *s, char c)

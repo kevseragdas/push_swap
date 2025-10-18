@@ -14,7 +14,7 @@ void  pa(t_list **stack_a, t_list **stack_b)
 
    first_b->next = *stack_a;
    *stack_a = first_b;
-   printf("pa\n");
+   ft_printf("pa\n");
 }
 
 void pb(t_list **stack_a, t_list **stack_b)
@@ -28,5 +28,5 @@ void pb(t_list **stack_a, t_list **stack_b)
 
    first_a->next = *stack_b;
    *stack_b = first_a;
-   printf("pb\n");
+   ft_printf("pb\n");
 }

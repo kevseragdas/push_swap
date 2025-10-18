@@ -18,7 +18,6 @@ int max_bitn(t_list *stack_a)
         max = max >> 1;
         bit++;  
     }
-    printf("bit: %d\n",bit);
     return(bit);
 }
 

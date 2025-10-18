@@ -2,14 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_stack(t_list *stack)
-{
-    while (stack != NULL)
-    {
-        printf("%d\n", stack->value);
-        stack = stack->next;
-    }
-}
 void add_back(t_list *node, t_list **stack_a)
 { 
     t_list *temp;
@@ -34,7 +26,7 @@ int is_digit(char **s)
     while (s[i])
     {
         int j = 0;
-        if (s[i][j] == '-')
+        if (s[i][j] == '-' || s[i][j] == '+')
             j++;
         if (s[i][j] == '\0')
             return 0;
@@ -80,6 +72,15 @@ int is_repeat(t_list *stack)
     }
     return (1);
 }
+
+void    ft_exit(t_list **stack, char **new, int split_count)
+{
+    if (new)
+        ft_free(new, split_count); 
+    ft_printf("Error\n");
+    free_stack(stack);
+    exit(1);
+}
 void    make_number(char **arg, t_list **stack)
 {
     int i;
@@ -91,33 +92,53 @@ void    make_number(char **arg, t_list **stack)
     while(arg[++i])
     {
         new = ft_split(arg[i], ' ');
+        if(!new || !new[0])
+            ft_exit(stack, new, 0);
         if(!is_digit(new))
-        {
-            free_stack(stack); 
-            exit(1);
-        }
+            ft_exit(stack, new, j - 1);
         j = -1;
         while(new[++j])
         {
             node = malloc(sizeof(t_list));
+            if(!node)
+                ft_exit(stack, new, j - 1);
             node->value = ft_atoi(new[j]);
             add_back(node, stack);
         }
+        ft_free(new, j - 1);
     }
+}
+int is_sorted(t_list *stack)
+{
+    while(stack->next)
+    {
+        if((stack->value) < (stack->next->value))
+            stack = stack->next;
+        else
+            return (1);
+    }
+    return(0);
 }
 
 int main(int ac, char **arg)
 {
     t_list * stack_a = NULL;
     t_list * stack_b = NULL;
-
-    if(ac == 1)     exit(1);
+    int s_stack;
+    
+    if(ac == 1 || ac == 2)
+        return(0);
     make_number(arg, &stack_a);
     if(!is_repeat(stack_a))
     {
-        free_stack(&stack_a); 
+        ft_printf("Error\n");
+        free_stack(&stack_a);
         exit(1);
     }
-    radix_sort(&stack_a, &stack_b);
-    print_stack(stack_a);
+    s_stack = stack_size(stack_a);
+    if(!is_sorted(stack_a))
+        return (0);
+    acnumctl(s_stack, &stack_a, &stack_b);
+    free_stack(&stack_a);
+    free_stack(&stack_b);
 }
