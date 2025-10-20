@@ -75,12 +75,12 @@ int is_repeat(t_list *stack)
 
 void    ft_exit(t_list **stack, char **new, int split_count)
 {
-    if (new)
+    if (new && split_count >= 0)
         ft_free(new, split_count); 
-    ft_printf("Error\n");
     free_stack(stack);
+    write(2,"Error\n",6);
     exit(1);
-}
+}   
 void    make_number(char **arg, t_list **stack)
 {
     int i;
@@ -95,7 +95,7 @@ void    make_number(char **arg, t_list **stack)
         if(!new || !new[0])
             ft_exit(stack, new, 0);
         if(!is_digit(new))
-            ft_exit(stack, new, j - 1);
+            ft_exit(stack, new, 0);
         j = -1;
         while(new[++j])
         {
@@ -126,18 +126,21 @@ int main(int ac, char **arg)
     t_list * stack_b = NULL;
     int s_stack;
     
-    if(ac == 1 || ac == 2)
+    if(ac == 1)
         return(0);
     make_number(arg, &stack_a);
     if(!is_repeat(stack_a))
     {
-        ft_printf("Error\n");
         free_stack(&stack_a);
+        write(2,"Error\n",6);
         exit(1);
     }
     s_stack = stack_size(stack_a);
     if(!is_sorted(stack_a))
-        return (0);
+    {
+        free_stack(&stack_a);
+        exit(0);
+    }
     acnumctl(s_stack, &stack_a, &stack_b);
     free_stack(&stack_a);
     free_stack(&stack_b);

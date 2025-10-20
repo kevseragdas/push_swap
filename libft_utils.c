@@ -20,7 +20,7 @@ size_t	ft_atoi(const char *nptr)
 			opt *= -1;
 		i++;
 	}
-	num = 0;
+	num = 0;	
 	while (nptr[i] <= '9' && nptr[i] >= '0')
 	{
 		num = num * 10 + (nptr[i] - '0');
