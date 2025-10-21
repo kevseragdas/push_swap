@@ -69,16 +69,17 @@ static int	ft_word_count(char const *s, char c)
 	return (count);
 }
 
-char **ft_free(char **new, int j)
+char **ft_free(char **new)
 {
-    while (j >= 0)
-    {
-        free(new[j]);
-        j--;
-    }
+    int i = 0;
+    if (!new)
+        return (NULL);
+    while (new[i])
+        free(new[i++]);
     free(new);
-    return NULL;
+    return (NULL);
 }
+   
 
 char	**ft_split(char const *s, char c)
 {
@@ -99,7 +100,7 @@ char	**ft_split(char const *s, char c)
 		{
 			new[j] = ft_substr(s, i, ft_word_long(s + i, c));
 			if (!new[j])
-				return (ft_free(new, j));
+				return (ft_free(new));
 			i = i + ft_word_long(s + i, c);
 			j++;
 		}

@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-size_t	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
 	int	i;
-	int	num;
+	long long	num;
 	int	opt;
 
 	i = 0;

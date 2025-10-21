@@ -11,7 +11,7 @@ void    sa(t_list **stack_a)
     *stack_a = (*stack_a)->next;
     first_a->next = (*stack_a)->next;
     (*stack_a)->next = first_a;
-    ft_printf("sa\n");
+    write(1,"sa\n",3);
 }
 
 void    sb(t_list **stack_b)
@@ -24,7 +24,7 @@ void    sb(t_list **stack_b)
     *stack_b = (*stack_b)->next;
     first_b->next = (*stack_b)->next;
     (*stack_b)->next = first_b;
-    ft_printf("sb\n");
+    write(1,"sb\n",3);
 }
 void ss(t_list **stack_a, t_list **stack_b)
 {
@@ -42,5 +42,5 @@ void ss(t_list **stack_a, t_list **stack_b)
         first_b->next = (*stack_b)->next;
         (*stack_b)->next = first_b;
     }
-    ft_printf("ss\n");
+    write(1,"ss\n",3);
 }

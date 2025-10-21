@@ -5,21 +5,23 @@
 
 int max_bitn(t_list *stack_a)
 {
-    int max = 0;
+    int max;
     int bit = 0;
-    while(stack_a != NULL)
+
+    if (!stack_a)
+        return (0);
+    max = stack_a->index; 
+    while (stack_a)
     {
-        if((stack_a ->value) > max)
-            max = stack_a ->value;
+        if (stack_a->index > max)
+            max = stack_a->index;
         stack_a = stack_a->next;
     }
-    while(max != 0)
-    {
-        max = max >> 1;
-        bit++;  
-    }
-    return(bit);
+    while ((max >> bit) != 0)
+        bit++;
+    return (bit);
 }
+
 
 int stack_size(t_list *stack)
 {

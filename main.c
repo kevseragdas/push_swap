@@ -73,10 +73,10 @@ int is_repeat(t_list *stack)
     return (1);
 }
 
-void    ft_exit(t_list **stack, char **new, int split_count)
+void    ft_exit(t_list **stack, char **new)
 {
-    if (new && split_count >= 0)
-        ft_free(new, split_count); 
+    if (new)
+        ft_free(new); 
     free_stack(stack);
     write(2,"Error\n",6);
     exit(1);
@@ -93,20 +93,35 @@ void    make_number(char **arg, t_list **stack)
     {
         new = ft_split(arg[i], ' ');
         if(!new || !new[0])
-            ft_exit(stack, new, 0);
+            ft_exit(stack, new);
         if(!is_digit(new))
-            ft_exit(stack, new, 0);
+            ft_exit(stack, new);
         j = -1;
         while(new[++j])
         {
             node = malloc(sizeof(t_list));
             if(!node)
-                ft_exit(stack, new, j - 1);
-            node->value = ft_atoi(new[j]);
+                ft_exit(stack, new);
+            node->value = is_long(node, new, j, stack);
             add_back(node, stack);
         }
-        ft_free(new, j - 1);
+        ft_free(new);
     }
+}
+
+int     is_long(t_list *node, char **new, int j, t_list **stack)
+{ 
+    long long num;
+
+    num = ft_atoi(new[j]);
+        if(num > 2147483647 || num < -2147483648)
+        {
+            free(node);
+            ft_exit(stack, new);
+        }
+        else
+            node->value = num;
+    return(node->value);
 }
 int is_sorted(t_list *stack)
 {
