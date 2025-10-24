@@ -1,7 +1,6 @@
 #include "push_swap.h"
-#include <stdlib.h>
 
-size_t	ft_strlen(const char *s)
+static size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -11,7 +10,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;

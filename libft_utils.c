@@ -1,11 +1,7 @@
-#include "push_swap.h"
-#include <stdlib.h>
-#include <unistd.h>
-
-long long	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	int	i;
-	long long	num;
+	long	num;
 	int	opt;
 
 	i = 0;
@@ -28,3 +24,4 @@ long long	ft_atoi(const char *nptr)
 	}
 	return (opt * num);
 }
+
