@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_split.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kagdas <kagdas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/28 16:28:58 by kagdas            #+#    #+#             */
+/*   Updated: 2025/10/28 16:28:58 by kagdas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static size_t	ft_strlen(const char *s)
+static	size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -10,7 +22,7 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-static char	*ft_substr(char const *s, unsigned int start, size_t len)
+static	char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;
@@ -67,18 +79,6 @@ static int	ft_word_count(char const *s, char c)
 	}
 	return (count);
 }
-
-char **ft_free(char **new)
-{
-    int i = 0;
-    if (!new)
-        return (NULL);
-    while (new[i])
-        free(new[i++]);
-    free(new);
-    return (NULL);
-}
-   
 
 char	**ft_split(char const *s, char c)
 {

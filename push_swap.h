@@ -1,41 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kagdas <kagdas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/28 16:14:28 by kagdas            #+#    #+#             */
+/*   Updated: 2025/10/28 16:14:28 by kagdas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
-	int value;
-	int index;
-	struct s_list *next;
-} t_list;
+	int				value;
+	int				index;
+	struct s_list	*next;
+}	t_list;
 
 typedef struct s_push_swap
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	int size_a;
-	int size_b;
-}t_push_swap;
-	
-
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		size_a;
+	int		size_b;
+}	t_push_swap;
+void	two_arg(t_list **stack);
+void	three_arg(t_list **a);
+void	four_arg(t_list **a, t_list **b);
+void	five_to_ten(t_list **a, t_list **b);
 void	pa(t_list **stack_a, t_list **stack_b);
-void 	pb(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_a, t_list **stack_b);
 void	sa(t_list **stack_a);
 void	rra(t_list **stack_a);
 void	ra(t_list **stack_a);
-void    ft_exit(t_list **stack, char **new);
+void	ft_exit(t_list **stack, char **new);
 void	acnumctl(int ac, t_list **stack_a, t_list **stack_b);
-void    radix_sort(t_list **stack_a, t_list **stack_b);
-char 	**ft_free(char **new);
+void	radix_sort(t_list **stack_a, t_list **stack_b);
+char	**ft_free(char **new);
 char	**ft_split(char const *s, char c);
 long	ft_atoi(const char *nptr);
-int 	main(int ac, char **arg);
-int 	is_digit(char **s);
-int 	is_repeat(t_list *stack);
-int 	is_so_long(char *str);
-int 	is_long(t_list *node, char **new, int j, t_list **stack);
-int 	is_sorted(t_list *stack);
-int 	stack_size(t_list *stack);
+int		main(int ac, char **arg);
+int		is_digit(char **s);
+int		is_repeat(t_list *stack);
+int		is_so_long(char *str);
+int		is_long(t_list *node, char **new, int j, t_list **stack);
+int		is_sorted(t_list *stack);
+int		stack_size(t_list *stack);
+int		find_min(t_list *stack);
+int		find_position(t_list *stack, int val);
 #endif

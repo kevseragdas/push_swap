@@ -3,7 +3,7 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = libft_split.c libft_utils.c main.c \
+SRC = libft_split.c libft_utils.c main.c arg_size_2.c\
 	  radix.c arg_size.c main_utils.c operations.c\
 
 OBJ = $(SRC:.c=.o)
